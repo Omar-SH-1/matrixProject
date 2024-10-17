@@ -2,6 +2,7 @@
 #define MATRIX_H
 #include <iostream>
 #include <vector>
+#include <stdexcept>
 template <typename T>
 class Matrix{
 	private:
@@ -51,8 +52,27 @@ class Matrix{
        }
        return *this;
    }
+   template <typename T1>
+    bool operator == (const Matrix<T1>& other) const {
+        const size_t rows = GetRows();
+        const size_t columns = GetColumns();
+        if (rows != other.GetRows() || columns != other.GetColumns()) {
+            return false;
+        }
+        for (size_t i = 0; i != rows; ++i) {
+            for (size_t j = 0; j != columns; ++j) {
+                if (!((*this)(i, j) == other(i, j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 };
 
+template <typename T>
+Matrix<T> operator + (const Matrix<T>& m1, const Matrix<T>& m2);
 template <typename T>
 std::ostream& operator << (std::ostream& out, const Matrix<T>& matrix); 
 template <typename T>

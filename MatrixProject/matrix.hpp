@@ -50,4 +50,11 @@ std::istream& operator >> (std::istream& in, Matrix<T>& matrix) {
     }
     return in;
 }
+
+template <typename T>
+Matrix<T> operator + (const Matrix<T>& m1, const Matrix<T>& m2) {
+    auto tmp = m1;
+    tmp += m2;
+    return tmp;
+}
 #endif //MATRIX_HPP
