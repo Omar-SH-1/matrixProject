@@ -77,5 +77,10 @@ template <typename T>
 std::ostream& operator << (std::ostream& out, const Matrix<T>& matrix); 
 template <typename T>
 std::istream& operator >> (std::istream& in, Matrix<T>& matrix);
+template <typename T1, typename T2>
+bool operator != (const Matrix<T1>& m1, const Matrix<T2>& m2) {
+    return !(m1 == m2);
+}
+
 #include "matrix.hpp"
 #endif //MATRIX_H
