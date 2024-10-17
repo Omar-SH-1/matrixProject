@@ -1,14 +1,18 @@
-#include <iostream>
+
 #include "matrix.h"
-int main(){
-	Matrix<int> m({
-		{1,2,3},
-		{4,5,6}
-	});
-	std::cout<<m.GetRows()<<"\n";
-	std::cout<<m.GetColumus()<<"\n";
-	std::cout<<m.GetColumus()<<"\n";
-    int element = m[0][1]; 
-    m[1][1]= 11;
-    m(1,1)=1;
+int main() {
+    Matrix<double> m(3,4);
+    std::cin >> m;
+    std::cout << m.GetRows() << "\n";
+    std::cout << m.GetColumns() << "\n"; 
+    std::cout << m.GetColumns() << "\n"; 
+
+   // double element = m[0][1];
+    m[1][1] = 11;
+    m(1, 1) = 1;
+    
+   std::cout<<m;
+    return 0;
 }
+
+

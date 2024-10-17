@@ -6,7 +6,7 @@ size_t Matrix<T>::GetRows()const{
 	return data.size();
 }
 template <typename T> 
-size_t Matrix<T>::GetColumus() const{
+size_t Matrix<T>::GetColumns() const{
 	if (data.empty())
 		return 0;
 	return data[0].size();
@@ -22,5 +22,32 @@ void Matrix<T>:: MakeRectangle(){
 	for (auto& row:data){
 		row.resize(maxSize);
 	}
+}
+
+template <typename T>
+std::ostream& operator << (std::ostream& out, const Matrix<T>& matrix) {
+    const size_t rows = matrix.GetRows();
+    const size_t columns = matrix.GetColumns();
+    for (size_t i = 0; i != rows; ++i) {
+        for (size_t j = 0; j != columns; ++j) {
+            if (j > 0) {
+                out << "\t";
+            }
+            out << matrix[i][j];
+        }
+        out << "\n";
+    }
+    return out;
+}
+template <typename T>
+std::istream& operator >> (std::istream& in, Matrix<T>& matrix) {
+    const size_t rows = matrix.GetRows();
+    const size_t columns = matrix.GetColumns();
+    for (size_t i = 0; i != rows; ++i) {
+        for (size_t j = 0; j != columns; ++j) {
+            in >> matrix(i, j);
+        }
+    }
+    return in;
 }
 #endif //MATRIX_HPP
